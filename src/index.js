@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const { Intents } = require('discord.js');
 const dotenv = require('dotenv');
+const { Client } = require('discord.js');
+const { Player } = require('discord-player');
 
 
 dotenv.config();
@@ -31,3 +33,21 @@ client.on("messageCreate", (msg) => {
         });
     }
 });
+
+const cliente = new Client({
+    restTimeOffset: 0,
+    shards: "auto",
+    intents: 641,
+});
+
+const player = new Player(cliente, {
+    leaveOnEnd: true,
+    leaveOnStrop: true,
+    leaveOnEmpty: true,
+    leaveOnEmptyCooldown: 5000, 
+    autoSelfDeaf: true,
+    initialVolume: 50,
+    bufferingTimeout: 3000
+});
+
+module.exports = { player, cliente};

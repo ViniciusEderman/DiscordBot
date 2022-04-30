@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/ViniciusEderman/DiscordBot#readme",
   "dependencies": {
+    "discord-player": "^5.2.2",
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "ffmpeg-static": "^4.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
