@@ -40,7 +40,7 @@ module.exports = async (client, msg, args, command) => {
     const queue = player.getQueue(msg.guild.id);
     queue.skip();
     msg.channel.send(`Proxima música.`);
-  } else if (command === "next") {
+  } else if (command === "break") {
     const queue = player.getQueue(msg.guild.id);
     queue.stop();
     msg.channel.send(`Pediu pra parar parouuu.`);
