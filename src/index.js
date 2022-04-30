@@ -3,6 +3,7 @@ const { Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const { Client } = require('discord.js');
 const { Player } = require('discord-player');
+const {prefix, token} = require("../config.json")
 
 
 dotenv.config();
@@ -11,7 +12,7 @@ const client = new Discord.Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
-const prefix = "#";
+
 
 client.login(process.env.TOKEN);
 
@@ -50,4 +51,21 @@ const player = new Player(cliente, {
     bufferingTimeout: 3000
 });
 
+client.on("ready", () => {
+    console.log("bot ativo");
+    client.user.setActivity("Your Song", { type: "LISTENING" });
+}); 
+
+client.on("messageCreate", (msg) => {
+    if(!msg.guild || msg.author.bot) return;
+    if(!msg.content.startsWith(prefix)) return;
+
+    const args = msg.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+
+    require("./commands")(client, msg, args, command);
+});
+
 module.exports = { player, cliente};
+
+client.login()
