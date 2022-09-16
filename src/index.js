@@ -19,14 +19,17 @@ const player = new Player(client, {
 });
 
 client.on("ready", () => {
+
   console.log("bot is already activated 🤖");
   client.user.setActivity("Your Song", { type: "LISTENING" });
+
 });
 
 module.exports = { player, client };
 require("./envents")(client);
 
 client.on("messageCreate", (msg) => {
+  
   if (!msg.guild || msg.author.bot) return;
   if (!msg.content.startsWith(prefix)) return;
 
